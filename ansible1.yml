@@ -1,20 +1,25 @@
 ---
-- name: Create directory and file on CentOS
+- name: Create test directory and file under /home/cstadmin
   hosts: all
   become: yes
   gather_facts: no
   vars:
-    ansible_remote_tmp: /tmp  # override to avoid issues with $HOME
+    ansible_remote_tmp: /tmp
+    ansible_shell_executable: /bin/bash
 
   tasks:
-    - name: Create /home/tmp directory
+    - name: Ensure /home/cstadmin/test directory exists
       file:
-        path: /home/tmp
+        path: /home/cstadmin/test
         state: directory
+        owner: cstadmin
+        group: cstadmin
         mode: '0755'
 
-    - name: Create /home/tmp/test.txt
+    - name: Create /home/cstadmin/test/test.txt file
       file:
-        path: /home/tmp/test.txt
+        path: /home/cstadmin/test/test.txt
         state: touch
+        owner: cstadmin
+        group: cstadmin
         mode: '0644'
