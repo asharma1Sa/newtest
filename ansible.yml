@@ -1,6 +1,6 @@
 ---
 - name: Create a file on Windows in C:\
-  hosts: windows
+  hosts: all
   gather_facts: no
   tasks:
     - name: Create test.txt file in C:\
