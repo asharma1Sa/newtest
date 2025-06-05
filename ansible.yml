@@ -1,0 +1,9 @@
+---
+- name: Create a file on Windows in C:\
+  hosts: windows
+  gather_facts: no
+  tasks:
+    - name: Create test.txt file in C:\
+      win_file:
+        path: C:\test.txt
+        state: touch
