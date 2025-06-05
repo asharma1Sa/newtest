@@ -1,6 +1,11 @@
-- name: Echo text on remote host
+- name: Run inline bash script to create file
   hosts: all
   become: true
   tasks:
-    - name: Echo Hello World using shell
-      shell: echo "Hello World"
+    - name: Create file using bash logic
+      shell: |
+        #!/bin/bash
+        FILE_PATH="/home/test.txt"
+        mkdir -p "$(dirname "$FILE_PATH")"
+        touch "$FILE_PATH"
+        echo "File created at $FILE_PATH"
