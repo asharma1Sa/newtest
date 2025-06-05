@@ -1,6 +1,6 @@
-- name: Create a file in /home/cstadmin/test directory using shell command
+- name: Echo text on remote host
   hosts: all
   become: true
   tasks:
-    - name: Create /home/cstadmin/test/test.txt using shell
-      shell: touch /home/cstadmin/test/test.txt
+    - name: Echo Hello World using shell
+      shell: echo "Hello World"
