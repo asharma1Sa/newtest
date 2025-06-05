@@ -1,8 +1,10 @@
 ---
-- name: Create directory and file on CentOS VM
+- name: Create directory and file on CentOS
   hosts: all
   become: yes
   gather_facts: no
+  vars:
+    ansible_remote_tmp: /tmp  # override to avoid issues with $HOME
 
   tasks:
     - name: Create /home/tmp directory
@@ -11,7 +13,7 @@
         state: directory
         mode: '0755'
 
-    - name: Create test.txt file in /home/tmp
+    - name: Create /home/tmp/test.txt
       file:
         path: /home/tmp/test.txt
         state: touch
