@@ -1,25 +1,6 @@
----
-- name: Create test directory and file under /home/cstadmin
+- name: Create a file in /home/cstadmin/test directory using shell command
   hosts: all
-  become: yes
-  gather_facts: no
-  vars:
-    ansible_remote_tmp: /tmp
-    ansible_shell_executable: /bin/bash
-
+  become: true
   tasks:
-    - name: Ensure /home/cstadmin/test directory exists
-      file:
-        path: /home/cstadmin/test
-        state: directory
-        owner: cstadmin
-        group: cstadmin
-        mode: '0755'
-
-    - name: Create /home/cstadmin/test/test.txt file
-      file:
-        path: /home/cstadmin/test/test.txt
-        state: touch
-        owner: cstadmin
-        group: cstadmin
-        mode: '0644'
+    - name: Create /home/cstadmin/test/test.txt using shell
+      shell: touch /home/cstadmin/test/test.txt
