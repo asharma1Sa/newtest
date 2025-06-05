@@ -1,0 +1,18 @@
+---
+- name: Create directory and file on CentOS VM
+  hosts: all
+  become: yes
+  gather_facts: no
+
+  tasks:
+    - name: Create /home/tmp directory
+      file:
+        path: /home/tmp
+        state: directory
+        mode: '0755'
+
+    - name: Create test.txt file in /home/tmp
+      file:
+        path: /home/tmp/test.txt
+        state: touch
+        mode: '0644'
